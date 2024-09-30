@@ -1,0 +1,25 @@
+table {
+  border-collapse: collapse;
+  border: 0.1rem solid #bbb;
+  thead {
+    background: #bbb;
+  }
+
+  th,
+  td {
+    padding: 0.5rem 1rem;
+  }
+
+  tbody {
+    cursor: pointer;
+    tr:nth-child(even) {
+      background: #eee;
+    }
+    tr:hover {
+      background: #ddd;
+    }
+    tr.selected {
+      background: #ccc;
+    }
+  }
+}

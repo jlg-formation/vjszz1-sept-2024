@@ -4,6 +4,10 @@
   --light-gray: #eee;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: sans-serif;
@@ -20,5 +24,18 @@ main {
   flex: 1;
   display: flex;
   flex-flow: column;
+  align-items: center;
   gap: 0.25rem;
+  padding: 0.5rem;
+  width: 100%;
+  max-width: 100ch;
+  margin: 0 auto;
+
+  p {
+    width: 100%;
+  }
+
+  h1 {
+    text-align: center;
+  }
 }

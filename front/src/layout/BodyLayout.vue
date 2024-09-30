@@ -1,11 +1,3 @@
 <template>
-  <main>
-    <p>Body</p>
-  </main>
+  <RouterView />
 </template>
-
-<style scoped>
-main {
-  flex: 1;
-}
-</style>

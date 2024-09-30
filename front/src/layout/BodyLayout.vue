@@ -1,1 +1,3 @@
-<template>body</template>
+<template>
+  <p>body</p>
+</template>

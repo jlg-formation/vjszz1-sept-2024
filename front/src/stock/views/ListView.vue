@@ -6,7 +6,7 @@
     <div class="content">
       <nav>
         <button>Rafraîchir</button>
-        <RouterLink to="add" class="button">Ajouter</RouterLink>
+        <RouterLink to="/stock/add" class="button">Ajouter</RouterLink>
         <button>Supprimer</button>
       </nav>
       <table>

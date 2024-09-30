@@ -2,7 +2,22 @@
 
 <template>
   <main>
-    <h1>Add View</h1>
+    <h1>Ajouter un article</h1>
+    <form>
+      <label>
+        <span>Nom</span>
+        <input type="text" />
+      </label>
+      <label>
+        <span>Prix</span>
+        <input type="number" />
+      </label>
+      <label>
+        <span>Quantité</span>
+        <input type="number" />
+      </label>
+      <button class="primary">Ajouter</button>
+    </form>
   </main>
 </template>
 

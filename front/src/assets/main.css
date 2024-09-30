@@ -1,5 +1,6 @@
 @import './css/button.css';
 @import './css/table.css';
+@import './css/form.css';
 
 :root {
   --light-gray: #eee;

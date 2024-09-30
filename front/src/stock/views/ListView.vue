@@ -1,13 +1,22 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { faRotateRight, faPlus, faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+</script>
 
 <template>
   <main>
     <h1>Liste des articles</h1>
     <div class="content">
       <nav>
-        <button>Rafraîchir</button>
-        <RouterLink to="/stock/add" class="button">Ajouter</RouterLink>
-        <button>Supprimer</button>
+        <button title="Rafraîchir">
+          <FontAwesomeIcon :icon="faRotateRight" />
+        </button>
+        <RouterLink to="/stock/add" class="button" title="Ajouter">
+          <FontAwesomeIcon :icon="faPlus" />
+        </RouterLink>
+        <button title="Supprimer">
+          <FontAwesomeIcon :icon="faTrashCan" />
+        </button>
       </nav>
       <table>
         <thead>

@@ -1,4 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+</script>
 
 <template>
   <main>
@@ -16,7 +19,10 @@
         <span>Quantité</span>
         <input type="number" />
       </label>
-      <button class="primary">Ajouter</button>
+      <button class="primary">
+        <FontAwesomeIcon :icon="faPlus" />
+        <span>Ajouter</span>
+      </button>
     </form>
   </main>
 </template>

@@ -1,6 +1,10 @@
 table {
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
   border: 0.1rem solid #bbb;
+  border-radius: 0.3rem;
+
   thead {
     background: #bbb;
   }

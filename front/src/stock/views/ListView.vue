@@ -20,23 +20,23 @@
         <tbody>
           <tr>
             <td class="name">Tournevis</td>
-            <td class="price">3.45 €</td>
-            <td class="qty">123</td>
+            <td class="price text-right">3.45 €</td>
+            <td class="qty text-right">123</td>
           </tr>
           <tr>
             <td class="name">Pelle</td>
-            <td class="price">13.45 €</td>
-            <td class="qty">6</td>
+            <td class="price text-right">13.45 €</td>
+            <td class="qty text-right">6</td>
           </tr>
           <tr class="selected">
             <td class="name">Arrosoir</td>
-            <td class="price">5.00 €</td>
-            <td class="qty">12</td>
+            <td class="price text-right">5.00 €</td>
+            <td class="qty text-right">12</td>
           </tr>
           <tr>
             <td class="name">Marteau</td>
-            <td class="price">34.00 €</td>
-            <td class="qty">8</td>
+            <td class="price text-right">34.00 €</td>
+            <td class="qty text-right">8</td>
           </tr>
         </tbody>
       </table>

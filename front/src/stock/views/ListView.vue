@@ -1,30 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import type { Article } from '../interfaces/Article'
+import { useArticleStore } from '../article.store'
 
-const articles = ref<Article[]>([
-  {
-    id: 'a1',
-    name: 'Tournevis',
-    price: 3.99,
-    qty: 345
-  },
-  {
-    id: 'a2',
-    name: 'Pelle',
-    price: 5,
-    qty: 12
-  }
-])
-
-setTimeout(() => {
-  articles.value.push({
-    id: 'a3',
-    name: 'xxx',
-    price: 5,
-    qty: 12
-  })
-}, 2000)
+const articleStore = useArticleStore()
+articleStore.refresh()
 </script>
 
 <template>
@@ -51,7 +29,10 @@ setTimeout(() => {
           </tr>
         </thead>
         <tbody>
-          <tr v-for="article in articles" :key="article.id">
+          <tr v-if="articleStore.articles === undefined">
+            <td colspan="3">Loading...</td>
+          </tr>
+          <tr v-else v-for="article in articleStore.articles" :key="article.id">
             <td class="name">{{ article.name }}</td>
             <td class="price text-right">{{ article.price }} €</td>
             <td class="qty text-right">{{ article.qty }}</td>

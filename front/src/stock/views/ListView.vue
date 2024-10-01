@@ -30,7 +30,12 @@ articleStore.refresh()
         </thead>
         <tbody>
           <tr v-if="articleStore.articles === undefined">
-            <td colspan="3">Loading...</td>
+            <td colspan="3">
+              <div class="loading">
+                <FontAwesomeIcon icon="fa-circle-notch" :spin="true" />
+                <span>Loading...</span>
+              </div>
+            </td>
           </tr>
           <tr v-else v-for="article in articleStore.articles" :key="article.id">
             <td class="name">{{ article.name }}</td>
@@ -53,5 +58,12 @@ div.content {
     display: flex;
     gap: 0.25rem;
   }
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 </style>

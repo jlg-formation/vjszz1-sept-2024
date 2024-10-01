@@ -1,8 +1,24 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
 import { useArticleStore } from '../article.store'
 
+const errorMsg = ref('')
+
 const articleStore = useArticleStore()
-articleStore.refresh()
+onMounted(async () => {
+  if (articleStore.articles !== undefined) {
+    return
+  }
+  try {
+    await articleStore.refresh()
+  } catch (err) {
+    if (err instanceof Error) {
+      errorMsg.value = err.message
+      return
+    }
+    errorMsg.value = 'Erreur inconnue'
+  }
+})
 </script>
 
 <template>
@@ -31,9 +47,12 @@ articleStore.refresh()
         <tbody>
           <tr v-if="articleStore.articles === undefined">
             <td colspan="3">
-              <div class="loading">
+              <div v-if="errorMsg === ''" class="loading">
                 <FontAwesomeIcon icon="fa-circle-notch" :spin="true" />
                 <span>Loading...</span>
+              </div>
+              <div v-else class="error">
+                <strong>{{ errorMsg }}</strong>
               </div>
             </td>
           </tr>
@@ -65,5 +84,12 @@ div.content {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+}
+
+.error {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

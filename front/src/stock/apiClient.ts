@@ -1,24 +1,13 @@
 import { sleep } from '@/utils/sleep'
 import type { Article } from './interfaces/Article'
 
-const articles = [
-  {
-    id: 'a1',
-    name: 'Tournevis',
-    price: 3.99,
-    qty: 345
-  },
-  {
-    id: 'a2',
-    name: 'Pelle',
-    price: 5,
-    qty: 12
-  }
-]
+const url = 'http://localhost:3000/api/articles'
 
 class API {
   async retrieveAll(): Promise<Article[]> {
-    await sleep(2000)
+    await sleep(300)
+    const response = await fetch(url)
+    const articles: Article[] = await response.json()
     return articles
   }
 }

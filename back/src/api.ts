@@ -11,7 +11,7 @@ const articles = [
   },
   {
     id: "a2",
-    name: "Pelle",
+    name: "Tondeuse",
     price: 5,
     qty: 12,
   },

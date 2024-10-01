@@ -1,8 +1,7 @@
-const express = require("express");
-const serveIndex = require("serve-index");
+import express from "express";
+import serveIndex from "serve-index";
 
-// @ts-ignore
-const api = require("./api");
+import api from "./api";
 console.log("api: ", api);
 
 const app = express();

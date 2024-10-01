@@ -1,7 +1,4 @@
-<script setup lang="ts">
-import { faRotateRight, faPlus, faTrashCan } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <main>
@@ -9,13 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
     <div class="content">
       <nav>
         <button title="Rafraîchir">
-          <FontAwesomeIcon :icon="faRotateRight" />
+          <FontAwesomeIcon icon="fa-rotate-right" />
         </button>
         <RouterLink to="/stock/add" class="button" title="Ajouter">
-          <FontAwesomeIcon :icon="faPlus" />
+          <FontAwesomeIcon icon="fa-plus" />
         </RouterLink>
         <button title="Supprimer">
-          <FontAwesomeIcon :icon="faTrashCan" />
+          <FontAwesomeIcon icon="fa-trash-can" />
         </button>
       </nav>
       <table>

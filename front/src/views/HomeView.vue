@@ -1,14 +1,9 @@
-<script setup lang="ts">
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-</script>
-
 <template>
   <main>
     <h1>Gérer efficacement votre stock</h1>
     <RouterLink to="/stock" class="button primary">
       <span>Voir le stock</span>
-      <FontAwesomeIcon :icon="faChevronRight" />
+      <FontAwesomeIcon icon="fa-chevron-right" />
     </RouterLink>
   </main>
 </template>

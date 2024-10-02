@@ -1,9 +1,13 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const handleSubmit = () => {
+  console.log('submit')
+}
+</script>
 
 <template>
   <main>
     <h1>Ajouter un article</h1>
-    <form>
+    <form @submit.prevent="handleSubmit">
       <label>
         <span>Nom</span>
         <input type="text" />

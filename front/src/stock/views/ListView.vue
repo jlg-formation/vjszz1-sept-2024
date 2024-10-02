@@ -38,7 +38,7 @@ const handleSelect = (article: Article) => {
         <RouterLink to="/stock/add" class="button" title="Ajouter">
           <FontAwesomeIcon icon="fa-plus" />
         </RouterLink>
-        <button title="Supprimer">
+        <button title="Supprimer" v-show="selectedArticles.size > 0">
           <FontAwesomeIcon icon="fa-trash-can" />
         </button>
       </nav>

@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { useArticleStore } from '../article.store'
+import type { Article } from '../interfaces/Article'
 
 const errorMsg = ref('')
+const selectedArticles = ref(new Set<Article['id']>())
 
 const articleStore = useArticleStore()
 onMounted(async () => {
@@ -19,6 +21,10 @@ onMounted(async () => {
     errorMsg.value = 'Erreur inconnue'
   }
 })
+
+const handleSelect = (article: Article) => {
+  selectedArticles.value.delete(article.id) || selectedArticles.value.add(article.id)
+}
 </script>
 
 <template>
@@ -56,7 +62,13 @@ onMounted(async () => {
               </div>
             </td>
           </tr>
-          <tr v-else v-for="article in articleStore.articles" :key="article.id">
+          <tr
+            v-else
+            v-for="article in articleStore.articles"
+            :key="article.id"
+            @click="handleSelect(article)"
+            :class="{ selected: selectedArticles.has(article.id) }"
+          >
             <td class="name">{{ article.name }}</td>
             <td class="price text-right">{{ article.price }} €</td>
             <td class="qty text-right">{{ article.qty }}</td>

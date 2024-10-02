@@ -34,7 +34,7 @@ const handleAction = async () => {
 </script>
 
 <template>
-  <button :title="props.title" @click="handleAction()" :disabled="isDoing">
+  <button :title="props.title" @click.prevent="handleAction()" :disabled="isDoing">
     <FontAwesomeIcon :icon="isDoing ? 'fa-circle-notch' : props.icon" :spin="isDoing" />
     <slot></slot>
   </button>

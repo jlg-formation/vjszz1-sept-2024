@@ -64,13 +64,14 @@ const setError = (message: string) => {
         <RouterLink to="/stock/add" class="button" title="Ajouter">
           <FontAwesomeIcon icon="fa-plus" />
         </RouterLink>
-        <button
+        <AsyncButton
           title="Supprimer"
+          icon="fa-trash-can"
+          :action="handleDeleteSelected"
+          @error="setError($event)"
+          @start="setError('')"
           v-show="selectedArticles.size > 0"
-          @click="handleDeleteSelected()"
-        >
-          <FontAwesomeIcon icon="fa-trash-can" />
-        </button>
+        />
       </nav>
       <div class="error">
         <strong>{{ errorMsg }}</strong>

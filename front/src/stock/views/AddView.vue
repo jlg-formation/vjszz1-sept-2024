@@ -1,9 +1,27 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import type { NewArticle } from '../interfaces/Article'
+import { useArticleStore } from '../article.store'
+import { useRouter } from 'vue-router'
 
-const handleSubmit = () => {
-  console.log('submit')
+const errorMsg = ref('')
+
+const articleStore = useArticleStore()
+
+const router = useRouter()
+
+const handleSubmit = async () => {
+  try {
+    console.log('submit')
+    errorMsg.value = ''
+    await articleStore.add(newArticle)
+    router.replace('/stock')
+  } catch (err) {
+    console.log('err: ', err)
+    if (err instanceof Error) {
+      errorMsg.value = err.message
+    }
+  }
 }
 
 const newArticle = reactive<NewArticle>({
@@ -29,6 +47,9 @@ const newArticle = reactive<NewArticle>({
         <span>Quantité</span>
         <input type="number" v-model="newArticle.qty" />
       </label>
+      <div class="error">
+        <strong>{{ errorMsg }}</strong>
+      </div>
       <button class="primary">
         <FontAwesomeIcon icon="fa-plus" />
         <span>Ajouter</span>

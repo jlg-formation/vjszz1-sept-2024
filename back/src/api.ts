@@ -1,4 +1,5 @@
-import express from "express";
+import express, { json } from "express";
+import crypto from "node:crypto";
 
 const app = express.Router();
 
@@ -19,11 +20,20 @@ const articles = [
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "*");
   next();
 });
 
 app.get("/articles", (req, res) => {
   res.json(articles);
+});
+
+app.post("/articles", json(), (req, res) => {
+  const newArticle = req.body;
+  console.log("newArticle: ", newArticle);
+  const article = { ...newArticle, id: crypto.randomUUID() };
+  articles.push(article);
+  res.status(204).end();
 });
 
 export default app;

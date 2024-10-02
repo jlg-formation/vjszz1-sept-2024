@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-import type { Article } from './interfaces/Article'
+import type { Article, NewArticle } from './interfaces/Article'
 import { api } from './apiClient'
 
 export const useArticleStore = defineStore('articleStore', () => {
@@ -16,5 +16,15 @@ export const useArticleStore = defineStore('articleStore', () => {
     }
   }
 
-  return { articles, refresh }
+  const add = async (newArticle: NewArticle) => {
+    try {
+      console.log('add newArticle: ', newArticle)
+      await api.add(newArticle)
+      await refresh()
+    } catch (err) {
+      throw new Error('Erreur Technique')
+    }
+  }
+
+  return { articles, refresh, add }
 })

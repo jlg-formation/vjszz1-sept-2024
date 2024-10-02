@@ -18,7 +18,11 @@ form {
     }
   }
 
-  button {
-    margin-top: 10rem;
+  div.error {
+    height: 3em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

@@ -26,5 +26,15 @@ export const useArticleStore = defineStore('articleStore', () => {
     }
   }
 
-  return { articles, refresh, add }
+  const remove = async (ids: Article['id'][]) => {
+    try {
+      console.log('ids: ', ids)
+      await api.remove(ids)
+      await refresh()
+    } catch (err) {
+      throw new Error('Erreur Technique')
+    }
+  }
+
+  return { articles, refresh, add, remove }
 })

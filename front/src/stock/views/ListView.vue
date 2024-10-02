@@ -25,6 +25,19 @@ onMounted(async () => {
 const handleSelect = (article: Article) => {
   selectedArticles.value.delete(article.id) || selectedArticles.value.add(article.id)
 }
+
+const handleDeleteSelected = async () => {
+  try {
+    await articleStore.remove([...selectedArticles.value])
+    selectedArticles.value.clear()
+  } catch (err) {
+    if (err instanceof Error) {
+      errorMsg.value = err.message
+      return
+    }
+    errorMsg.value = 'Erreur inconnue'
+  }
+}
 </script>
 
 <template>
@@ -38,10 +51,17 @@ const handleSelect = (article: Article) => {
         <RouterLink to="/stock/add" class="button" title="Ajouter">
           <FontAwesomeIcon icon="fa-plus" />
         </RouterLink>
-        <button title="Supprimer" v-show="selectedArticles.size > 0">
+        <button
+          title="Supprimer"
+          v-show="selectedArticles.size > 0"
+          @click="handleDeleteSelected()"
+        >
           <FontAwesomeIcon icon="fa-trash-can" />
         </button>
       </nav>
+      <div class="error">
+        <strong>{{ errorMsg }}</strong>
+      </div>
       <table>
         <thead>
           <tr>
@@ -56,9 +76,6 @@ const handleSelect = (article: Article) => {
               <div v-if="errorMsg === ''" class="loading">
                 <FontAwesomeIcon icon="fa-circle-notch" :spin="true" />
                 <span>Loading...</span>
-              </div>
-              <div v-else class="error">
-                <strong>{{ errorMsg }}</strong>
               </div>
             </td>
           </tr>
@@ -83,11 +100,14 @@ const handleSelect = (article: Article) => {
 div.content {
   display: flex;
   flex-flow: column;
-  gap: 3em;
 
   nav {
     display: flex;
     gap: 0.25rem;
+  }
+
+  div.error {
+    height: 3em;
   }
 }
 

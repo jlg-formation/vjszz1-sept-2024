@@ -15,6 +15,17 @@ class API {
     }
   }
 
+  async remove(ids: string[]) {
+    const response = await fetch(url, {
+      method: 'DELETE',
+      body: JSON.stringify(ids),
+      headers: { 'Content-Type': 'application/json' }
+    })
+    if (response.status >= 400) {
+      throw new Error('Erreur Technique')
+    }
+  }
+
   async retrieveAll(): Promise<Article[]> {
     await sleep(300)
     const response = await fetch(url)

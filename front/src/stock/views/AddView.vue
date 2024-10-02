@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import type { NewArticle } from '../interfaces/Article'
-import { useArticleStore } from '../article.store'
 import { useRouter } from 'vue-router'
+import { useArticleStore } from '../article.store'
+import type { NewArticle } from '../interfaces/Article'
 
 const errorMsg = ref('')
+const isAdding = ref(false)
 
 const articleStore = useArticleStore()
 
@@ -13,14 +14,17 @@ const router = useRouter()
 const handleSubmit = async () => {
   try {
     console.log('submit')
+    isAdding.value = true
     errorMsg.value = ''
     await articleStore.add(newArticle)
-    router.replace('/stock')
+    await router.replace('/stock')
   } catch (err) {
     console.log('err: ', err)
     if (err instanceof Error) {
       errorMsg.value = err.message
     }
+  } finally {
+    isAdding.value = false
   }
 }
 
@@ -50,8 +54,8 @@ const newArticle = reactive<NewArticle>({
       <div class="error">
         <strong>{{ errorMsg }}</strong>
       </div>
-      <button class="primary">
-        <FontAwesomeIcon icon="fa-plus" />
+      <button class="primary" :disabled="isAdding">
+        <FontAwesomeIcon :icon="isAdding ? 'fa-circle-notch' : 'fa-plus'" :spin="isAdding" />
         <span>Ajouter</span>
       </button>
     </form>

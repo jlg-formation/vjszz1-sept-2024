@@ -24,7 +24,8 @@ const router = createRouter({
         title: 'Gestion Stock : Mentions Légales'
       }
     },
-    ...stockRoutes
+    ...stockRoutes,
+    { path: '/:catchAll(.*)', redirect: '/' }
   ]
 })
 

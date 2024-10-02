@@ -5,7 +5,7 @@ import { ref } from 'vue'
 const isDoing = ref(false)
 
 const props = defineProps<{
-  title: string
+  title?: string
   icon: FontAwesomeIconProps['icon']
   action: () => Promise<void>
 }>()
@@ -36,5 +36,6 @@ const handleAction = async () => {
 <template>
   <button :title="props.title" @click="handleAction()" :disabled="isDoing">
     <FontAwesomeIcon :icon="isDoing ? 'fa-circle-notch' : props.icon" :spin="isDoing" />
+    <slot></slot>
   </button>
 </template>

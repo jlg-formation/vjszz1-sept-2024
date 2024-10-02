@@ -28,6 +28,10 @@ const handleSubmit = async () => {
   }
 }
 
+const setError = (message: string) => {
+  errorMsg.value = message
+}
+
 const newArticle = reactive<NewArticle>({
   name: 'Truc',
   price: 0,
@@ -38,7 +42,7 @@ const newArticle = reactive<NewArticle>({
 <template>
   <main>
     <h1>Ajouter un article</h1>
-    <form @submit.prevent="handleSubmit">
+    <form>
       <label>
         <span>Nom</span>
         <input type="text" v-model="newArticle.name" v-focus />
@@ -54,10 +58,15 @@ const newArticle = reactive<NewArticle>({
       <div class="error">
         <strong>{{ errorMsg }}</strong>
       </div>
-      <button class="primary" :disabled="isAdding">
-        <FontAwesomeIcon :icon="isAdding ? 'fa-circle-notch' : 'fa-plus'" :spin="isAdding" />
-        <span>Ajouter</span>
-      </button>
+      <AsyncButton
+        icon="fa-plus"
+        :action="handleSubmit"
+        @error="setError($event)"
+        @start="setError('')"
+        class="primary"
+      >
+        Ajouter
+      </AsyncButton>
     </form>
   </main>
 </template>

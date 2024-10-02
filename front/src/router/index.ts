@@ -8,7 +8,10 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta: {
+        title: 'Gestion Stock'
+      }
     },
     {
       path: '/legal',
@@ -16,10 +19,18 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/LegalView.vue')
+      component: () => import('../views/LegalView.vue'),
+      meta: {
+        title: 'Gestion Stock : Mentions Légales'
+      }
     },
     ...stockRoutes
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  document.title = (to.meta.title as string) || 'Gestion Stock'
+  next()
 })
 
 export default router

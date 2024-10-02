@@ -41,6 +41,11 @@ const handleDeleteSelected = async () => {
 
 const handleRefresh = async () => {
   await articleStore.refresh()
+  throw new Error('qwqwqwqw')
+}
+
+const setError = (message: string) => {
+  errorMsg.value = message
 }
 </script>
 
@@ -49,7 +54,13 @@ const handleRefresh = async () => {
     <h1>Liste des articles</h1>
     <div class="content">
       <nav>
-        <AsyncButton title="Rafraîchir" icon="fa-rotate-right" :action="handleRefresh" />
+        <AsyncButton
+          title="Rafraîchir"
+          icon="fa-rotate-right"
+          :action="handleRefresh"
+          @error="setError($event)"
+          @start="setError('')"
+        />
         <RouterLink to="/stock/add" class="button" title="Ajouter">
           <FontAwesomeIcon icon="fa-plus" />
         </RouterLink>

@@ -10,12 +10,26 @@ const props = defineProps<{
   action: () => Promise<void>
 }>()
 
+const emit = defineEmits<{
+  (e: 'error', message: string): void
+  (e: 'start'): void
+}>()
+
 const handleAction = async () => {
-  console.log('start action')
-  isDoing.value = true
-  await props.action()
-  console.log('finished action')
-  isDoing.value = false
+  try {
+    console.log('start action')
+    emit('start')
+    isDoing.value = true
+    await props.action()
+    console.log('finished action')
+  } catch (err) {
+    console.log('err: ', err)
+    if (err instanceof Error) {
+      emit('error', err.message)
+    }
+  } finally {
+    isDoing.value = false
+  }
 }
 </script>
 

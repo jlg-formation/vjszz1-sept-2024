@@ -1,18 +1,8 @@
 <script setup lang="ts">
-import { reactive, ref, type Directive } from 'vue'
+import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useArticleStore } from '../article.store'
 import type { NewArticle } from '../interfaces/Article'
-
-const vFocus: Directive<HTMLElement> = {
-  mounted: (el) => {
-    if (el instanceof HTMLInputElement) {
-      el.select()
-      return
-    }
-    el.focus()
-  }
-}
 
 const errorMsg = ref('')
 const isAdding = ref(false)

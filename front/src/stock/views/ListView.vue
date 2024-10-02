@@ -38,6 +38,10 @@ const handleDeleteSelected = async () => {
     errorMsg.value = 'Erreur inconnue'
   }
 }
+
+const handleRefresh = async () => {
+  await articleStore.refresh()
+}
 </script>
 
 <template>
@@ -45,9 +49,7 @@ const handleDeleteSelected = async () => {
     <h1>Liste des articles</h1>
     <div class="content">
       <nav>
-        <button title="Rafraîchir">
-          <FontAwesomeIcon icon="fa-rotate-right" />
-        </button>
+        <AsyncButton title="Rafraîchir" icon="fa-rotate-right" :action="handleRefresh" />
         <RouterLink to="/stock/add" class="button" title="Ajouter">
           <FontAwesomeIcon icon="fa-plus" />
         </RouterLink>

@@ -1,8 +1,18 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { reactive, ref, type Directive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useArticleStore } from '../article.store'
 import type { NewArticle } from '../interfaces/Article'
+
+const vFocus: Directive<HTMLElement> = {
+  mounted: (el) => {
+    if (el instanceof HTMLInputElement) {
+      el.select()
+      return
+    }
+    el.focus()
+  }
+}
 
 const errorMsg = ref('')
 const isAdding = ref(false)
@@ -41,7 +51,7 @@ const newArticle = reactive<NewArticle>({
     <form @submit.prevent="handleSubmit">
       <label>
         <span>Nom</span>
-        <input type="text" v-model="newArticle.name" />
+        <input type="text" v-model="newArticle.name" v-focus />
       </label>
       <label>
         <span>Prix</span>
